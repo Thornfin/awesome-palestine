@@ -8,87 +8,83 @@ body {
 
 .navbar {
     background-color: #323232;
-    margin: 0 auto;
-    padding: 15px 0;
-    display: flex;
-    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 15px;
     position: relative;
-    /* Important for submenu positioning */
+    /* Needed for absolute positioning of submenu */
 }
 
 .navbar ul {
     list-style-type: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 
 .navbar li {
     position: relative;
-   
+    /* Establishes positioning context for submenus */
 }
-
 
 .navbar a {
     display: block;
     color: #a5a3a3;
-    padding: 15px 20px;
+    text-align: center;
+    padding: 15px 80px;
+    /* Adjust the padding to control spacing */
     text-decoration: none;
-    transition: color 0.5s ease;
+    font-size: 14px;
 }
 
 .navbar a:hover {
-    color: #fff;
+    color: rgb(253, 253, 253);
+    opacity: 1.0;
+    cursor: pointer;
+    transition: color 0.5s ease;
+    /* Transition for hover effect */
 }
 
+/* Submenu styling */
 .submenu {
     display: none;
-    position: fixed;
-    /* Use 'fixed' to break out of the container */
+    /* Hidden by default */
+    position: absolute;
+    /* Positioned relative to its parent li */
+    width: 100%;
+    /* Match the width of the parent li */
     left: 0;
-    right: 0;
-    top: calc(100% + 15px);
-    /* Adjust based on the navbar's height */
     background-color: #323232;
-    /* To match the navbar */
-    color: white;
-    padding: 0;
-    margin: 0;
-    opacity: 0;
-    /* Start fully transparent */
-    visibility: hidden;
-    /* Hide it by default */
-    transition: opacity 0.5s, visibility 0.5s;
-    /* Smooth transition for fade in/out */
-    z-index: 999;
-}
-
-.submenu li {
-    text-align: center;
-    /* Center the submenu items */
-    padding: 10px 0;
-    /* Provide some padding */
+    /* Submenu background */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Optional: adds depth */
+    z-index: 10;
+    /* Ensures the submenu is on top */
 }
 
 .navbar li:hover .submenu {
     display: block;
-    /* Show the submenu on hover */
-    opacity: 1;
-    visibility: visible;
+    /* Display submenu on hover */
 }
 
 .submenu a {
-    padding: 12px 16px;
-    /* Adjust padding for submenu items */
+    padding: 12px 80px;
+    /* Match the padding of navbar a for alignment */
+    color: white;
+    /* Submenu item text color */
     text-decoration: none;
+    /* No underline */
     display: block;
-    /* Ensures each submenu item is full-width */
-    color: #a5a3a3;
-    /* Match the color with the parent navbar */
+    /* Block-level for full width */
+    border: none;
+    /* Remove borders */
+    transition: background-color 0.3s;
+    /* Transition for hover effect */
 }
 
 .submenu a:hover {
     background-color: #414141;
-    /* Slightly lighter than the navbar for hover effect */
+    /* Hover background color */
 }
