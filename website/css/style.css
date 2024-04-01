@@ -1,24 +1,23 @@
-body {
-    background-color: rgb(255, 255, 255);
+/* Reset and base styles */
+* {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
 }
 
 .navbar {
     background-color: #323232;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 15px;
+    padding: 15px 0;
     position: relative;
-    /* Needed for absolute positioning of submenu */
 }
 
 .navbar ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,65 +25,89 @@ body {
 
 .navbar li {
     position: relative;
-    /* Establishes positioning context for submenus */
 }
 
 .navbar a {
     display: block;
     color: #a5a3a3;
-    text-align: center;
-    padding: 15px 80px;
-    /* Adjust the padding to control spacing */
+    padding: 15px 30px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
+    transition: color 0.5s ease;
 }
 
 .navbar a:hover {
-    color: rgb(253, 253, 253);
-    opacity: 1.0;
-    cursor: pointer;
-    transition: color 0.5s ease;
-    /* Transition for hover effect */
+    color: #ffffff;
 }
 
-/* Submenu styling */
-.submenu {
+/* Overlay styles */
+.overlay {
     display: none;
-    /* Hidden by default */
-    position: absolute;
-    /* Positioned relative to its parent li */
-    width: 100%;
-    /* Match the width of the parent li */
+    position: fixed;
+    top: 0;
     left: 0;
-    background-color: #323232;
-    /* Submenu background */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* Optional: adds depth */
-    z-index: 10;
-    /* Ensures the submenu is on top */
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    transition: opacity 0.5s, visibility 0.5s;
 }
 
-.navbar li:hover .submenu {
+.nav-item:hover~.overlay {
     display: block;
-    /* Display submenu on hover */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Submenu styles */
+.submenu {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 60px;
+    background-color: #323232;
+    z-index: 1000;
+    padding: 20px 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+    z-index: 1000;
+}
+
+.nav-item:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
 }
 
 .submenu a {
-    padding: 12px 80px;
-    /* Match the padding of navbar a for alignment */
     color: white;
-    /* Submenu item text color */
-    text-decoration: none;
-    /* No underline */
-    display: block;
-    /* Block-level for full width */
+    padding: 10px 20px;
+    font-size: 18px;
+    text-align: left;
     border: none;
-    /* Remove borders */
-    transition: background-color 0.3s;
-    /* Transition for hover effect */
+    transition: background-color 0.3s ease;
 }
 
 .submenu a:hover {
     background-color: #414141;
-    /* Hover background color */
+}
+
+/* Additional style for submenu items to stack vertically */
+.submenu div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    border-bottom: 1px solid #484848;
+    /* Separator for items, remove if not needed */
+}
+
+/* Style for submenu headings, if used */
+.submenu h2 {
+    font-size: 22px;
+    color: #a5a3a3;
+    margin: 10px 20px;
 }
